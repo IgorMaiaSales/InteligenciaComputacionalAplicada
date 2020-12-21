@@ -1,0 +1,5 @@
+/venv
+/.vscode
+/.mypy_cache
+ipykernel
+ipykernel.error
