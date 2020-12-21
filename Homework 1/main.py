@@ -3,8 +3,7 @@ import matplotlib.pyplot as plt
 plt.style.use('ggplot')
 
 df = pd.read_csv("abalone.csv")
-
-# =======================================================================================
+# ========================================================================================
 # Unconditional Mono-Variate
 # Subtituir 'Rings' pelo nome do preditor que se quer plotar (Manter as aspas)
 print(df['Rings'].describe())
@@ -12,7 +11,7 @@ df['Rings'].plot.hist(alpha=0.5)
 plt.xlabel('Rings')
 plt.show()
 
-# =======================================================================================
+# ========================================================================================
 # Class Conditional Mono-Variate
 # Sepração das Classes(Male, Female e Infant) em diferentes Data Frames
 # df_male = df[df['Sex']=='M']
