@@ -2,16 +2,22 @@ import pandas as pd
 import matplotlib.pyplot as plt
 plt.style.use('ggplot')
 
-df = pd.read_csv("abalone.csv")
+df = pd.read_csv("C:/Users/Igor Maia/Projects/ICA/Homework 1/abalone.csv")
 # ========================================================================================
 # Unconditional Mono-Variate
 # Subtituir 'Rings' pelo nome do preditor que se quer plotar (Manter as aspas)
-print("Média:", df["Rings"].mean())
-print("Desvio padrão:", df["Rings"].std())
-print("Assimetria:", df["Rings"].skew())
-df['Rings'].plot.hist(alpha=0.5)
-plt.xlabel('Rings')
-plt.show()
+
+
+def unconditional_mono_variate(data):
+    print("Média:", data.mean())
+    print("Desvio padrão:", data.std())
+    print("Assimetria:", data.skew())
+    data.plot.hist(alpha=0.5)
+    plt.xlabel(data.name)
+    plt.show()
+
+
+unconditional_mono_variate(df["Rings"])
 
 # ========================================================================================
 # Class Conditional Mono-Variate
