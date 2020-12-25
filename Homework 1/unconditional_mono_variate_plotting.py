@@ -8,9 +8,10 @@ filename = os.path.join(os.path.dirname(__file__), 'abalone.csv')
 df = pd.read_csv(filename)
 
 fig, axs = plt.subplots(2, 4, figsize=[13, 5])
+fig.suptitle('Unconditional mono-variate histograms')
 
 
-def unconditional_mono_variate(data, subp):
+def histogram_plot(data, subp):
     print(data.name, ':', sep='')
     print("Média:", data.mean())
     print("Desvio padrão:", data.std())
@@ -20,14 +21,17 @@ def unconditional_mono_variate(data, subp):
     subp.set_ylabel("Frequency")
 
 
-unconditional_mono_variate(df["Length"], axs[0, 0])
-unconditional_mono_variate(df["Diameter"], axs[0, 1])
-unconditional_mono_variate(df["Height"], axs[0, 2])
-unconditional_mono_variate(df["Whole weight"], axs[0, 3])
-unconditional_mono_variate(df["Shucked weight"], axs[1, 0])
-unconditional_mono_variate(df["Viscera weight"], axs[1, 1])
-unconditional_mono_variate(df["Shell weight"], axs[1, 2])
-unconditional_mono_variate(df["Rings"], axs[1, 3])
+def predictors_histogram_plot(data, axs):
+    histogram_plot(data["Length"], axs[0, 0])
+    histogram_plot(data["Diameter"], axs[0, 1])
+    histogram_plot(data["Height"], axs[0, 2])
+    histogram_plot(data["Whole weight"], axs[0, 3])
+    histogram_plot(data["Shucked weight"], axs[1, 0])
+    histogram_plot(data["Viscera weight"], axs[1, 1])
+    histogram_plot(data["Shell weight"], axs[1, 2])
+    histogram_plot(data["Rings"], axs[1, 3])
 
+
+predictors_histogram_plot(df, axs)
 fig.tight_layout()
 plt.show()
