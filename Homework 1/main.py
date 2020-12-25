@@ -1,11 +1,15 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import os
 plt.style.use('ggplot')
 
-df = pd.read_csv("C:/Users/Igor Maia/Projects/ICA/Homework 1/abalone.csv")
+# Para usar relative path:
+filename = os.path.join(os.path.dirname(__file__), 'abalone.csv')
+df = pd.read_csv(filename)
+
 # ========================================================================================
 # Unconditional Mono-Variate
-# Subtituir 'Rings' pelo nome do preditor que se quer plotar (Manter as aspas)
+# Substituir 'Rings' pelo nome do preditor que se quer plotar (Manter as aspas)
 
 
 def unconditional_mono_variate(data):
@@ -34,4 +38,4 @@ unconditional_mono_variate(df["Rings"])
 # plt.xlabel('Length')
 # plt.legend(loc='best')
 # plt.show()
-# =====================================================================================
+# ========================================================================================
