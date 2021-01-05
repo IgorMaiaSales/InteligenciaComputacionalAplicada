@@ -22,9 +22,9 @@ principalComponents = pca.fit_transform(x)
 principalDf = pd.DataFrame(data = principalComponents
              , columns = ['principal component 1', 'principal component 2'])
 #display(principalDf.head(5))
-#display(df[['target']].head())
+#display(df[['Sex']].head())
 finalDf = pd.concat([principalDf, df[['Sex']]], axis = 1)
-#display(finalDf.head(5))
+display(finalDf.head(5))
 
 fig = plt.figure(figsize = (8,8))
 ax = fig.add_subplot(1,1,1) 
@@ -34,7 +34,7 @@ ax.set_title('2 Component PCA', fontsize = 20)
 
 
 targets = ['M', 'F', 'I']
-colors = ['r', 'g', 'b']
+colors = ['b', 'm', 'y']
 for target, color in zip(targets,colors):
     indicesToKeep = finalDf['Sex'] == target
     ax.scatter(finalDf.loc[indicesToKeep, 'principal component 1']
