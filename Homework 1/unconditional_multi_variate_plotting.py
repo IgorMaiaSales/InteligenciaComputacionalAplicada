@@ -17,6 +17,12 @@ y = df.loc[:,['Sex']].values
 x = StandardScaler().fit_transform(x)
 #display(pd.DataFrame(data = x, columns = features).head())
 
+varnames = ["PC1", "PC2", "PC3", "PC4", "PC5", "PC6", "PC7", "PC8"]
+pca = PCA()
+principalComponents = pca.fit_transform(x)
+explained_variance = pca.explained_variance_ratio_
+plt.plot(varnames, explained_variance)
+
 pca = PCA(n_components=2)
 principalComponents = pca.fit_transform(x)
 principalDf = pd.DataFrame(data = principalComponents
@@ -24,7 +30,7 @@ principalDf = pd.DataFrame(data = principalComponents
 #display(principalDf.head(5))
 #display(df[['Sex']].head())
 finalDf = pd.concat([principalDf, df[['Sex']]], axis = 1)
-display(finalDf.head(5))
+#display(finalDf.head(5))
 
 fig = plt.figure(figsize = (8,8))
 ax = fig.add_subplot(1,1,1) 
