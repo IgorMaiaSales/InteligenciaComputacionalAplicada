@@ -15,7 +15,7 @@ def histogram_plot(data, subp):
     print(data.name, ':', sep='')
     print("Média:", data.mean())
     print("Desvio padrão:", data.std())
-    print("Assimetria:", data.skew())
+    print("Assimetria:", data.skew(), "\n")
     subp.hist(data, alpha=0.5)
     subp.set_xlabel(data.name)
     subp.set_ylabel("Frequency")
