@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import os
+import numpy as np
 
 plt.style.use('ggplot')
 
@@ -57,9 +58,10 @@ predictors_histogram_plot(df_infant, infant_axs, 'y')
 fig3.tight_layout()
 fig3.suptitle('Infant mono-variate histograms')
 
-histogram_plot(df_male["Height"], ax, 'b')
-histogram_plot(df_female["Height"], ax, 'm')
-histogram_plot(df_infant["Height"], ax, 'y')
+bins = np.linspace(0, 1.2, 20)
+ax.hist(df_male["Height"], bins, alpha=0.5, color='b')
+ax.hist(df_female["Height"], bins, alpha=0.5, color='m')
+ax.hist(df_infant["Height"], bins, alpha=0.5, color='y')
 fig4.suptitle('Height histograms')
 targets = ['M', 'F', 'I']
 ax.legend(targets)
