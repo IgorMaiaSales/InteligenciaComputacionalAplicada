@@ -57,9 +57,11 @@ predictors_histogram_plot(df_infant, infant_axs, 'y')
 fig3.tight_layout()
 fig3.suptitle('Infant mono-variate histograms')
 
-histogram_plot(df_male["Length"], ax, 'b')
-histogram_plot(df_female["Length"], ax, 'm')
-histogram_plot(df_infant["Length"], ax, 'y')
-fig4.suptitle('Length histograms')
+histogram_plot(df_male["Height"], ax, 'b')
+histogram_plot(df_female["Height"], ax, 'm')
+histogram_plot(df_infant["Height"], ax, 'y')
+fig4.suptitle('Height histograms')
+targets = ['M', 'F', 'I']
+ax.legend(targets)
 
 plt.show()
