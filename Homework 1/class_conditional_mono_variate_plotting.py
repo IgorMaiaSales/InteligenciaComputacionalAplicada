@@ -12,13 +12,13 @@ df_female = df[df['Sex'] == 'F']
 df_infant = df[df['Sex'] == 'I']
 
 fig1, male_axs = plt.subplots(2, 4, figsize=[13, 5])
-fig1.suptitle('Male mono-variate histograms')
 
 fig2, female_axs = plt.subplots(2, 4, figsize=[13, 5])
-fig2.suptitle('Female mono-variate histograms')
 
 fig3, infant_axs = plt.subplots(2, 4, figsize=[13, 5])
-fig3.suptitle('Infant mono-variate histograms')
+
+fig4 = plt.figure(figsize=(8, 8))
+ax = fig4.add_subplot(1, 1, 1)
 
 
 def histogram_plot(data, subp, color):
@@ -45,13 +45,23 @@ def predictors_histogram_plot(data, axs, color):
 print("Male:")
 predictors_histogram_plot(df_male, male_axs, 'b')
 fig1.tight_layout()
+fig1.suptitle('Male mono-variate histograms')
 
 print("Female:")
 predictors_histogram_plot(df_female, female_axs, 'm')
 fig2.tight_layout()
+fig2.suptitle('Female mono-variate histograms')
 
 print("Infant:")
 predictors_histogram_plot(df_infant, infant_axs, 'y')
 fig3.tight_layout()
+fig3.suptitle('Infant mono-variate histograms')
+
+histogram_plot(df_male["Height"], ax, 'b')
+histogram_plot(df_female["Height"], ax, 'm')
+histogram_plot(df_infant["Height"], ax, 'y')
+fig4.suptitle('Height histograms')
+targets = ['M', 'F', 'I']
+ax.legend(targets)
 
 plt.show()
