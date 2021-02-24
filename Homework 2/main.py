@@ -1,1 +1,5 @@
-print('oi')
+import pandas as pd
+import numpy as np 
+
+df = pd.read_csv("abalone.csv")
+print(df.head())
