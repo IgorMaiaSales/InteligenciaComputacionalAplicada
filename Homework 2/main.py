@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np 
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.model_selection import KFold
 
 #========================================================================================================
 #Lendo o data frame
@@ -53,3 +54,20 @@ sc_X = StandardScaler()
 
 #Aplicando a função
 X2= sc_X.fit_transform(X2)
+
+#========================================================================================================
+#Aplicando KFold-5
+
+#Criando a instância kf
+kf = KFold(n_splits=5)
+
+#Criando um loop for que lista todas as opções de folds. 
+for train_index, test_index in kf.split(X2):
+    #Printando o índice das observações utilizadas para teste e para treino para cada diferente fold.
+    print("TRAIN:", train_index, "TEST:", test_index)
+
+    #Alocando o valor dos preditores. Acredito que o modelo Preditivo tenha que ser implementado aqui.
+    X_train = X2[train_index]
+    X_test = X2[test_index]
+    y_train = Y[train_index]
+    y_test = Y[test_index]
