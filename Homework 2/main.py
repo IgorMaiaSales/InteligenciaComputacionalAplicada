@@ -3,6 +3,7 @@ import numpy as np
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.model_selection import KFold, train_test_split
 from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, r2_score
 
 # ========================================================================
 # Lendo o data frame
@@ -77,6 +78,12 @@ regressor_1.fit(X_train_1, y_train_1)
 # Testando o modelo
 y_pred_1 = regressor_1.predict(X_test_1)
 
+# Avaliação do Modelo
+rmse_1 = mean_squared_error(y_test_1, y_pred_1, squared=0)
+r2_1 = r2_score(y_test_1, y_pred_1)
+print("RMSE da Regrassão Linear Ordinária: ", rmse_1)
+print("R² da Regrassão Linear Ordinária: ", r2_1)
+
 # ========================================================================
 # Aplicando KFold-5
 
@@ -105,3 +112,10 @@ for train_index, test_index in kf.split(X_2):
 
 # Testando o modelo
     y_pred_2 = regressor.predict(X_test_2)
+
+
+# Avaliação do Modelo
+    rmse_2 = mean_squared_error(y_test_2, y_pred_2, squared=0)
+    r2_2 = r2_score(y_test_2, y_pred_2)
+    print("RMSE da Regrassão Linear 5-Fold CV: ", rmse_2)
+    print("R² da Regrassão Linear 5-Fold CV: ", r2_2)
