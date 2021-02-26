@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np 
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.model_selection import KFold
+from sklearn.linear_model import LinearRegression
 
 #========================================================================================================
 #Lendo o data frame
@@ -64,10 +65,24 @@ kf = KFold(n_splits=5)
 #Criando um loop for que lista todas as opções de folds. 
 for train_index, test_index in kf.split(X2):
     #Printando o índice das observações utilizadas para teste e para treino para cada diferente fold.
-    print("TRAIN:", train_index, "TEST:", test_index)
+    #print("TRAIN:", train_index, "TEST:", test_index)
 
     #Alocando o valor dos preditores. Acredito que o modelo Preditivo tenha que ser implementado aqui.
     X_train = X2[train_index]
     X_test = X2[test_index]
     y_train = Y[train_index]
     y_test = Y[test_index]
+
+#========================================================================================================
+#Implementando Regressão Linear
+
+#Criando instância modelo 
+    regressor = LinearRegression()
+
+#Treinando o Modelo
+    regressor.fit(X_train, y_train)
+
+#Testando o modelo
+    y_pred = regressor.predict(X_test)
+
+    print(y_test - y_pred)
