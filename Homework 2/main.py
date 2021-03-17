@@ -50,7 +50,6 @@ X_1 = enc.fit_transform(X[:, 0:1]).toarray()
 # '1:'= seleciona a matriz a partir da coluna 1 e ignora a coluna 0
 # 'axis=1'= representa se a concatenação é horizantal ou vertical
 X_2 = np.concatenate((X_1, X[:, 1:]), axis=1)
-
 # ========================================================================
 # Normalizando os dados
 
@@ -67,7 +66,7 @@ X_2 = sc_X.fit_transform(X_2)
 
 # Dividindo Treino e Teste
 # Test_Size = O cojunto de teste será 20% de todos os dados
-X_train_1, X_test_1, y_train_1, y_test_1 = train_test_split(X_2, Y, test_size=0.2)
+X_train_1, X_test_1, y_train_1, y_test_1 = train_test_split(X_2, Y, test_size=0.2, random_state=0)
 
 # Criando instância modelo
 regressor_1 = LinearRegression()
@@ -82,7 +81,7 @@ y_pred_1 = regressor_1.predict(X_test_1)
 rmse_1 = mean_squared_error(y_test_1, y_pred_1, squared=0)
 r2_1 = r2_score(y_test_1, y_pred_1)
 print("RMSE da Regrassão Linear Ordinária: ", rmse_1)
-print("R² da Regrassão Linear Ordinária: ", r2_1)
+print("  R² da Regrassão Linear Ordinária: ", r2_1)
 
 # ========================================================================
 # Aplicando KFold-5
@@ -113,9 +112,8 @@ for train_index, test_index in kf.split(X_2):
 # Testando o modelo
     y_pred_2 = regressor.predict(X_test_2)
 
-
 # Avaliação do Modelo
     rmse_2 = mean_squared_error(y_test_2, y_pred_2, squared=0)
     r2_2 = r2_score(y_test_2, y_pred_2)
     print("RMSE da Regrassão Linear 5-Fold CV: ", rmse_2)
-    print("R² da Regrassão Linear 5-Fold CV: ", r2_2)
+    print("  R² da Regrassão Linear 5-Fold CV: ", r2_2)
