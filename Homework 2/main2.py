@@ -1,5 +1,8 @@
 import pandas as pd
 import numpy as np
+pd.set_option('display.max_rows', None)
+pd.set_option('display.max_columns', None)
+pd.set_option('display.width', None)
 from sklearn import preprocessing
 import matplotlib.pyplot as plt 
 plt.rc("font", size=14)
@@ -13,5 +16,7 @@ reducedSet = pd.read_csv("reducedSet.csv")
 testing = pd.read_csv("testing.csv")
 training = pd.read_csv("training.csv")
 
-train_set = training.filter(items=reducedSet.T.iloc[0 , :])
-test_set = testing.filter(items=reducedSet.T.iloc[0 , :])
+X_train = training.filter(items=reducedSet.T.iloc[0 , :])
+Y_train = training.iloc[: , 1881]
+X_test = testing.filter(items=reducedSet.T.iloc[0 , :])
+Y_test = testing.iloc[: , 1881]
