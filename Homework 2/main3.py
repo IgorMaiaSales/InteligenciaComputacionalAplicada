@@ -3,7 +3,7 @@ from sklearn.metrics import confusion_matrix
 import seaborn as sns
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegression
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn import preprocessing
 import pandas as pd
 import numpy as np
@@ -30,17 +30,17 @@ y_train = training.iloc[:, 1881]
 X_test = testing.filter(items=reducedSet.T.iloc[0, :])
 y_test = testing.iloc[:, 1881]
 
-
 sc_X = StandardScaler()
 X_train2 = sc_X.fit_transform(X_train)
 X_test2 = sc_X.transform(X_test)
 
-logreg = LogisticRegression()
-logreg.fit(X_train2, y_train)
 
-y_pred = logreg.predict(X_test2)
-print('Accuracy of logistic regression classifier on test set: {:.2f}'.format(
-    logreg.score(X_test2, y_test)))
+knn = KNeighborsClassifier(n_neighbors=11, metric='euclidean')
+knn.fit(X_train2, y_train)
+
+y_pred = knn.predict(X_test2)
+print('Accuracy of K-Neighbors classifier on test set: {:.2f}'.format(
+    knn.score(X_test2, y_test)))
 
 confusion_matrix = confusion_matrix(y_test, y_pred)
 print(confusion_matrix)
